@@ -1,0 +1,53 @@
+body{
+    background-color: rgb(237, 236, 235);
+}
+
+
+
+*{
+    box-sizing:border-box;
+}
+
+.header{
+ width:100%;
+ color:  rgb(43 184 243);
+}
+.header-title{
+    padding:10px;
+    color: white;
+    background-color: rgb(43 184 243);
+}
+#search{
+    padding: 5px;
+    width:60%; 
+    color: rgb(138, 136, 136);
+border: 1px solid gray
+
+}
+.cards{
+    float:left;
+    margin:10px;
+    
+}
+.cards:hover{
+    box-shadow: 1px 1px 7px teal;
+}
+.rightside{
+   float:right;
+}
+ .dropdown{
+    padding-bottom:5px;
+ }
+
+ .footer{
+    color: white;
+    background-color: rgb(45, 41, 41);
+    padding: 10px;
+  
+}
+
+.footer > span{
+    margin: 10px;
+
+}
+
