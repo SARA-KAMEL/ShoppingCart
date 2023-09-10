@@ -1,4 +1,4 @@
-const products = [
+ const products = [
     {
       "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
       "title": "Wireless Bluetooth Earbuds",
@@ -100,4 +100,4 @@ const products = [
       "price": 29.95
     }
   ];
-  
+module.exports = products;
