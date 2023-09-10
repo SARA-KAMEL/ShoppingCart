@@ -16,8 +16,9 @@ body{
     background-color: rgb(43 184 243);
     border-radius: 5px;
 }
-.header-text{
-  float: right;
+.header-title{
+ 
+  font-size: small;
 }
 .nav{
     position: relative;
@@ -49,10 +50,12 @@ box-shadow: 1px 0.5px 2px rgb(97, 74, 231);
     color: rgb(18, 6, 6);
     border: 1px solid gray;
     border-radius: 5px;
-
+width: 100%;
    
 }
-
+.row{
+    margin-top: 100px;
+}
 
 .cards{
     float:left;
