@@ -58,6 +58,8 @@ width: 100%;
 }
 
 .cards{
+    border: 3px solid rgb(250, 250, 212);
+    height: 450px;
     float:left;
     margin:10px;
     
@@ -67,6 +69,13 @@ width: 100%;
 }
 .rightside{
    float:right;
+}
+.cart-title{ 
+    padding:10px;
+    color:white;
+    font-size: large;
+    background-color: rgb(43 184 243);
+    border-radius: 4px;
 }
  .dropdown{
     padding-bottom:5px;
@@ -101,5 +110,8 @@ width: 100%;
 } */
 
 .card-img-top{ 
+    padding: 5px;
+    
+  
     height: 200px;
 }

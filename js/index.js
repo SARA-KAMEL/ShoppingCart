@@ -108,29 +108,57 @@ const products = [
   
 
 
+// function createCard(){
+// const cards = document.getElementById("cards");
+// const arrayMap = products.map((product) =>{
+//   return  `<div
+//   class="card cards text-white bg-info col-sm-6"
+//   style="width: 15rem; height:30rem"
+// >
+//   <img
+//     class="card-img-top"
+//     src="${product.images[0]}"
+//     alt="${product.title}"
+//   />
+//   <div class="card-body">
+//     <h5 class="card-title">${product.title}</h5>
+//     <p class="card-text">
+//      ${product.description}
+//     </p>
+//     <a href="#" class="btn btn-primary">Add to cart</a>
+//   </div>
+// </div>
+// ` ;
+// })
+// console.log(arrayMap.join(' '));
+// cards.innerHTML = arrayMap.join(' ');
+// }
+// createCard();
+
+
 function createCard(){
-const cards = document.getElementById("cards");
-const arrayMap = products.map((product) =>{
-  return  `<div
-  class="card cards text-white bg-info col-sm-6"
-  style="width: 15rem; height:30rem"
->
-  <img
-    class="card-img-top"
-    src="${product.images[0]}"
-    alt="${product.title}"
-  />
-  <div class="card-body">
-    <h5 class="card-title">${product.title}</h5>
-    <p class="card-text">
-     ${product.description}
-    </p>
-    <a href="#" class="btn btn-primary">Add to cart</a>
-  </div>
-</div>
-` ;
-})
-console.log(arrayMap.join(' '));
-cards.innerHTML = arrayMap.join(' ');
+  let cards = document.getElementById('cards');
+  const cardHTML = products.map((product) =>{
+    return `<div
+    class="card cards text-white bg-info col-sm-6"
+    style="width: 15rem"
+  >
+    <img
+      class="card-img-top"
+      src="${product.images[0]}"
+      alt="${product.title}"
+    />
+    <div class="card-body">
+      <h5 class="card-title">${product.title}</h5>
+      <p class="card-text">
+      ${product.description}
+      </p>
+      <a href="#" class="btn btn-primary">Add to cart</a>
+    </div>
+  </div>`
+  })
+cards.innerHTML = cardHTML.join('');
+  console.log(cardHTML)
 }
-createCard();
+
+createCard()
