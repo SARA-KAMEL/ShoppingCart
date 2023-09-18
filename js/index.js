@@ -1,7 +1,7 @@
 // const products = require('./shopping')
 // console.log(products);
 
-const products = [
+let products = [
   {
     "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
     "title": "Wireless Bluetooth Earbuds",
@@ -108,57 +108,87 @@ const products = [
   
 
 
-// function createCard(){
-// const cards = document.getElementById("cards");
-// const arrayMap = products.map((product) =>{
-//   return  `<div
-//   class="card cards text-white bg-info col-sm-6"
-//   style="width: 15rem; height:30rem"
-// >
-//   <img
-//     class="card-img-top"
-//     src="${product.images[0]}"
-//     alt="${product.title}"
-//   />
-//   <div class="card-body">
-//     <h5 class="card-title">${product.title}</h5>
-//     <p class="card-text">
-//      ${product.description}
-//     </p>
-//     <a href="#" class="btn btn-primary">Add to cart</a>
-//   </div>
-// </div>
-// ` ;
-// })
-// console.log(arrayMap.join(' '));
-// cards.innerHTML = arrayMap.join(' ');
-// }
-// createCard();
-
-
 function createCard(){
-  let cards = document.getElementById('cards');
-  const cardHTML = products.map((product) =>{
-    return `<div
-    class="card cards text-white bg-info col-sm-6"
-    style="width: 15rem"
-  >
-    <img
-      class="card-img-top"
-      src="${product.images[0]}"
-      alt="${product.title}"
-    />
-    <div class="card-body">
-      <h5 class="card-title">${product.title}</h5>
-      <p class="card-text">
-      ${product.description}
-      </p>
-      <a href="#" class="btn btn-primary">Add to cart</a>
-    </div>
-  </div>`
-  })
-cards.innerHTML = cardHTML.join('');
-  console.log(cardHTML)
+const cards = document.getElementById("cards");
+const arrayMap = products.map((product) =>{
+  return  `<div
+  class="card cards text-white bg-info col-sm-6"
+  style="width: 15rem; height:30rem"
+>
+  <img
+    class="card-img-top"
+    src="${product.images[0]}"
+    alt="${product.title}"
+  />
+  <div class="card-body">
+  
+    <h5 class="card-title">${product.title} ${product.price} $</h5>
+    <h5 >${product.price}$</h5>
+    <p class="card-text">
+     ${product.description}
+    </p>
+    <a id="add-to-card" href="#" class="btn btn-primary" onclick="addToCart('${product.id}') " >Add to cart</a>
+  </div>
+</div>
+` ;
+})
+
+cards.innerHTML = arrayMap.join(' ');
+}
+createCard(); 
+
+const total = document.getElementById('total');
+
+let arrayCart = [];
+function addToCart(id) {
+  let addItem = products.find((item) => item.id === id);
+  arrayCart.push(addItem);
+  console.log(arrayCart);
+
+  cartItems();
+ total.innerHTML = culculate();
+ 
 }
 
-createCard()
+function cartItems(){
+const cart = document.getElementById("cart");
+const arrayOfCart = arrayCart.map(item =>{
+  return     `<div>
+  <img src="${item.images[0]}" style="width: 20%; height: 20%" />
+  <h6 class="small-title">
+   ${item.title}<span style="float: right"> ${item.price} $</span>
+  </h6>
+
+  <select class="dropdown">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+  </select>
+  <button class="btn btn-primary">remove</button>
+
+<br> <br>
+</div>`
+})
+cart.innerHTML=arrayOfCart.join(' ')
+
+}
+
+function culculate(){
+  let itemTotal = 0;
+  for (i = 0; i < arrayCart.length; i++) {
+    itemTotal += arrayCart[i].price;
+  const tax = itemTotal *0.7;
+  
+
+    
+    return `<div>
+    <h5> total <span id="total-price" style="float: right">${itemTotal}</span></h5>
+    <h5>tax: <span id="total-price" style="float: right">${tax}  </span></h5>
+    <hr />
+    <h5>total: <span id="total-price" style="float: right">${itemTotal} + ${tax}  </span></h5>
+</div>`
+  }
+   
+}
