@@ -96,11 +96,13 @@ width: 100%;
 .small-title{
     color :rgb(42, 28, 28);
     padding: 5px; 
-    border: solid 1px rgb(45, 41, 41) ;
+    
     border-radius: 4px;
 }
 
-
+.float{
+    float:right;
+}
 /* @media screen  and (max-width: 900px)  {
     .nav{
         position: relative;
