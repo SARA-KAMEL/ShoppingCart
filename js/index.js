@@ -1,5 +1,3 @@
-// const products = require('./shopping')
-// console.log(products);
 
 let products = [
   {
@@ -107,10 +105,10 @@ let products = [
     price: 29.95,
   },
 ];
-
-function createCard() {
+let arrayCards =[];
+function createCard(array) {
   const cards = document.getElementById("cards");
-  const arrayMap = products.map((product) => {
+  arrayCards = array.map((product) => {
     return `<div
   class="card cards text-white bg-info col-sm-6"
   style="width: 15rem; height:30rem"
@@ -133,14 +131,13 @@ function createCard() {
 `;
   });
 
-  cards.innerHTML = arrayMap.join(" ");
+  cards.innerHTML = arrayCards.join(" ");
 }
-createCard();
+createCard(products);
 
 
 
 let arrayCart = [];
-
 function addToCart(id) {
   let addItem = products.find((item) => item.id === id);
   arrayCart.push(addItem);
@@ -198,3 +195,15 @@ finalPrice.innerHTML = allTotal.toFixed(2) ;
 
   
 }
+
+const search = document.getElementById("search");
+search.addEventListener("input", function(e){
+  let searchFilter =[];
+  let value = e.target.value.toLowerCase().trim();
+  searchFilter = products.filter((x) => {
+    return x.title.toLowerCase().includes(value);
+  
+  })
+  console.log(searchFilter);
+  createCard(searchFilter);
+})
