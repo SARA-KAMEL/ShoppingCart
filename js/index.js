@@ -105,6 +105,11 @@ let products = [
     price: 29.95,
   },
 ];
+
+for(let x in products){
+ products[x].quantity = 1;
+}
+  console.log(products);
 let arrayCards =[];
 function createCard(array) {
   const cards = document.getElementById("cards");
@@ -119,7 +124,6 @@ function createCard(array) {
     alt="${product.title}"
   />
   <div class="card-body">
-  
     <h5 class="card-title">${product.title} ${product.price} $</h5>
     <h5 >${product.price}$</h5>
     <p class="card-text">
@@ -137,6 +141,7 @@ createCard(products);
 
 
 
+
 let arrayCart = [];
 function addToCart(id) {
   let addItem = products.find((item) => item.id === id);
@@ -145,12 +150,22 @@ function addToCart(id) {
   culculate();
 }
 
+let isEdit = false;
+
+
+const cart = document.getElementById("cart");  
+
+
+function getSelectedAttr(val, q) {
+  return val === q? 'selected': '';
+}
+// bulid cart
 
 function buildCart() {
-  const cart = document.getElementById("cart");
-  const arrayOfCart = arrayCart.map((item) => {
-    return `<div>
-
+ let cartItems = arrayCart.map((item) => {
+console.log(arrayCart)
+console.log(item.quantity)
+return`<div>
   <div>
   <img src="${item.images[0]}" style="width:30%; height: 20%" />
    </div>
@@ -158,42 +173,47 @@ function buildCart() {
   <h6 class="small-title">
    ${item.title}
   </h6>
-  <h6 style="float: right"> ${item.price} $</h6>
-  <select class="dropdown ">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
+  <select id="quantity-${item.id}" class="dropdown" onchange = "getQuantity('${item.id}')">
+  <option  value=1 ${item.quantity === 1? "selected": " "}>1</option>
+  <option  value=2 ${item.quantity === 2? "selected": " "}>2</option>
+  <option  value=3 ${item.quantity === 3? "selected": " "}>3</option>
+  <option  value=4 ${item.quantity === 4? "selected": " "}>4</option>
+  <option  value=5 ${item.quantity === 5? "selected": " "}>5</option>
   </select>
-  <button class="btn btn-primary">remove</button> </div>
-
+  <button class="btn btn-primary">remove</button>
+  <h6 style="float: right"> ${item.price}$</h6>
+   </div>
 <br> <br>
-</div>`;
+</div>`
+
+
   });
 
-  cart.innerHTML = arrayOfCart.join(" ");
 
+  cart.innerHTML = cartItems.join(' ') ;
+  console.log(cart)
 }
+
 
 let total = document.getElementById("total");
 let itemPrice = document.getElementById("item-price ");
 let tax = document.getElementById("tax");
 let finalPrice = document.getElementById("final-price");
-
+let itemsTax = 0;
+let allTotal = 0;
+let sum = 0;
+ 
 function culculate() {
-  let sum = 0;
 for(let i = 0; i<arrayCart.length; i++){
     sum += arrayCart[i].price;
-  
   };
-  let itemsTax = sum * 0.07;
-  let allTotal = itemsTax + sum;
+
+itemsTax = sum * 0.07;
+allTotal = itemsTax + sum;
 itemPrice.innerHTML = sum;
 tax.innerHTML = itemsTax.toFixed(2);
 finalPrice.innerHTML = allTotal.toFixed(2) ;
 
-  
 }
 
 const search = document.getElementById("search");
@@ -207,3 +227,14 @@ search.addEventListener("input", function(e){
   console.log(searchFilter);
   createCard(searchFilter);
 })
+
+
+function getQuantity(id){
+
+const select = document.getElementById(`quantity-${id}`)
+let findItem = arrayCart.find((item) => item.id === id);
+findItem.quantity = select.value;
+console.log(arrayCart)
+ }
+ 
+ console.log(cart);

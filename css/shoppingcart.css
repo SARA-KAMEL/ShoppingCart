@@ -6,6 +6,8 @@ body{
 
 *{
     box-sizing:border-box;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -43,6 +45,7 @@ box-shadow: 1px 0.5px 2px rgb(97, 74, 231);
     background-color: rgb(68, 68, 121);
 }
 
+
 #search{
     font-size: small;
     padding: 5px;
@@ -77,8 +80,10 @@ width: 100%;
     background-color: rgb(43 184 243);
     border-radius: 4px;
 }
- .dropdown{
+ .quantity-input{
     padding-bottom:5px;
+    width: 40px;
+
  }
 
  .footer{
