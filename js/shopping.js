@@ -100,4 +100,4 @@
       "price": 29.95
     }
   ];
-module.exports = products;
+

@@ -1,4 +1,3 @@
-
 let products = [
   {
     id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
@@ -106,11 +105,7 @@ let products = [
   },
 ];
 
-for(let x in products){
- products[x].quantity = 1;
-}
-  console.log(products);
-let arrayCards =[];
+let arrayCards = [];
 function createCard(array) {
   const cards = document.getElementById("cards");
   arrayCards = array.map((product) => {
@@ -139,33 +134,20 @@ function createCard(array) {
 }
 createCard(products);
 
-
-
-
 let arrayCart = [];
 function addToCart(id) {
   let addItem = products.find((item) => item.id === id);
-  arrayCart.push(addItem);
+  arrayCart.push({ quantity: 1, ...addItem });
   buildCart();
-  culculate();
+  calculate();
 }
 
-let isEdit = false;
-
-
-const cart = document.getElementById("cart");  
-
-
-function getSelectedAttr(val, q) {
-  return val === q? 'selected': '';
-}
-// bulid cart
+const cart = document.getElementById("cart");
 
 function buildCart() {
- let cartItems = arrayCart.map((item) => {
-console.log(arrayCart)
-console.log(item.quantity)
-return`<div>
+  let cartItems = arrayCart.map((item) => {
+    console.log(arrayCart);
+    return `<div>
   <div>
   <img src="${item.images[0]}" style="width:30%; height: 20%" />
    </div>
@@ -173,27 +155,24 @@ return`<div>
   <h6 class="small-title">
    ${item.title}
   </h6>
-  <select id="quantity-${item.id}" class="dropdown" onchange = "getQuantity('${item.id}')">
-  <option  value=1 ${item.quantity === 1? "selected": " "}>1</option>
-  <option  value=2 ${item.quantity === 2? "selected": " "}>2</option>
-  <option  value=3 ${item.quantity === 3? "selected": " "}>3</option>
-  <option  value=4 ${item.quantity === 4? "selected": " "}>4</option>
-  <option  value=5 ${item.quantity === 5? "selected": " "}>5</option>
+  <select id="quantity-${item.id}" class="dropdown" onchange ="setQuantity('${item.id
+      }')">
+  <option  value=1 ${item.quantity === 1 ? "selected" : " "}>1</option>
+  <option  value=2 ${item.quantity === 2 ? "selected" : " "}>2</option>
+  <option  value=3 ${item.quantity === 3 ? "selected" : " "}>3</option>
+  <option  value=4 ${item.quantity === 4 ? "selected" : " "}>4</option>
+  <option  value=5 ${item.quantity === 5 ? "selected" : " "}>5</option>
   </select>
   <button class="btn btn-primary">remove</button>
   <h6 style="float: right"> ${item.price}$</h6>
    </div>
 <br> <br>
-</div>`
-
-
+</div>`;
   });
 
-
-  cart.innerHTML = cartItems.join(' ') ;
-  console.log(cart)
+  cart.innerHTML = cartItems.join(" ");
+  console.log(cart);
 }
-
 
 let total = document.getElementById("total");
 let itemPrice = document.getElementById("item-price ");
@@ -202,39 +181,31 @@ let finalPrice = document.getElementById("final-price");
 let itemsTax = 0;
 let allTotal = 0;
 let sum = 0;
- 
-function culculate() {
-for(let i = 0; i<arrayCart.length; i++){
+
+function calculate() {
+  for (let i = 0; i < arrayCart.length; i++) {
     sum += arrayCart[i].price;
-  };
-
-itemsTax = sum * 0.07;
-allTotal = itemsTax + sum;
-itemPrice.innerHTML = sum;
-tax.innerHTML = itemsTax.toFixed(2);
-finalPrice.innerHTML = allTotal.toFixed(2) ;
-
+  }
+  itemsTax += sum * 0.07;
+  allTotal += itemsTax + sum;
+  itemPrice.innerHTML = sum;
+  tax.innerHTML = itemsTax.toFixed(2);
+  finalPrice.innerHTML = allTotal.toFixed(2);
 }
 
 const search = document.getElementById("search");
-search.addEventListener("input", function(e){
-  let searchFilter =[];
+search.addEventListener("input", function (e) {
+  let searchFilter = [];
   let value = e.target.value.toLowerCase().trim();
   searchFilter = products.filter((x) => {
     return x.title.toLowerCase().includes(value);
-  
-  })
-  console.log(searchFilter);
+  });
   createCard(searchFilter);
-})
+});
 
-
-function getQuantity(id){
-
-const select = document.getElementById(`quantity-${id}`)
-let findItem = arrayCart.find((item) => item.id === id);
-findItem.quantity = select.value;
-console.log(arrayCart)
- }
- 
- console.log(cart);
+function setQuantity(id) {
+  const select = document.getElementById(`quantity-${id}`);
+  let findItem = arrayCart.find((item) => item.id === id);
+  findItem.quantity = parseInt(select.value);
+  console.log(select.value);
+}
