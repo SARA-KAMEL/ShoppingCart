@@ -98,20 +98,31 @@ body {
 }
 
 .cards {
-  border: 3px solid rgb(250, 250, 212);
-  height: 450px;
+  border: 3px solid rgb(18, 18, 15);
   float: left;
   margin: 10px;
+  width: 15rem;
+  height:30rem
 }
 .card-img-top {
+  background-color: #edf0f3;
     padding: 5px;
     height: 220px;
   }
   
 .cards:hover {
+.card-text{
+  display:block;
+}
   box-shadow: 1px 1px 7px teal;
 }
 
+.card-body{
+background-color: hwb(239 42% 15%);
+}
+.card-text{
+  display: none;
+}
 .rightside {
   float: right;
 }

@@ -111,7 +111,7 @@ function createCard(array) {
   arrayCards = array.map((product) => {
     return `<div
   class="card cards text-white bg-info col-sm-6"
-  style="width: 15rem; height:30rem"
+  style="; "
 >
   <img
     class="card-img-top"
@@ -147,12 +147,13 @@ const cart = document.getElementById("cart");
 function buildCart() {
   let cartItems = arrayCart.map((item) => {
     console.log(arrayCart);
+    calculate();
     return `<div>
   <div>
   <img src="${item.images[0]}" style="width:30%; height: 20%" />
    </div>
    <div>
-  <h6 class="small-title">
+  <h6>
    ${item.title}
   </h6>
   <select id="quantity-${item.id}" class="dropdown" onchange ="setQuantity('${item.id
