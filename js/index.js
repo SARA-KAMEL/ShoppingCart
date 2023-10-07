@@ -133,22 +133,22 @@ function createCard(array) {
   cards.innerHTML = arrayCards.join(" ");
 }
 createCard(products);
+
 let numberItems = document.getElementById("number-items");
-console.log(numberItems.innerHTML)
 
 let arrayCart = [];
 function addToCart(id) {
   let addItem = products.find((item) => item.id === id);
   arrayCart.push({ quantity: 1, ...addItem });
-  numberItems.innerHTML = arrayCart.length 
   buildCart();
-  // calculate();
+  calculate();
 }
 
 const cart = document.getElementById("cart");
 function buildCart() {
   let cartItems = arrayCart.map((item) => {
-    // calculate();
+    numberItems.innerHTML = arrayCart.length;
+
     return `<div>
   <div>
   <img src="${item.images[0]}" style="width:30%; height: 20%" />
@@ -157,8 +157,9 @@ function buildCart() {
   <h6>
    ${item.title}
   </h6>
-  <select id="quantity-${item.id}" class="dropdown" onchange ="setQuantity('${item.id
-      }')">
+  <select id="quantity-${item.id}" class="dropdown" onchange ="setQuantity('${
+      item.id
+    }')">
   <option  value=1 ${item.quantity === 1 ? "selected" : " "}>1</option>
   <option  value=2 ${item.quantity === 2 ? "selected" : " "}>2</option>
   <option  value=3 ${item.quantity === 3 ? "selected" : " "}>3</option>
@@ -166,7 +167,9 @@ function buildCart() {
   <option  value=5 ${item.quantity === 5 ? "selected" : " "}>5</option>
   </select>
   <button class="btn btn-primary">remove</button>
-  <h6 style="float: right"> ${item.price}$</h6>
+  <h6 id="price-${item.id}" style="float: right">${(
+      item.price * item.quantity
+    ).toFixed(2)}$</h6>
    </div>
 <br> <br>
 </div>`;
@@ -176,23 +179,21 @@ function buildCart() {
   console.log(cart);
 }
 
-let total = document.getElementById("total");
-let itemPrice = document.getElementById("item-price ");
+let itemPrice = document.getElementById("item-price");
 let tax = document.getElementById("tax");
 let finalPrice = document.getElementById("final-price");
-let itemsTax = 0;
-let allTotal = 0;
-let sum = 0;
 
 function calculate() {
-  for (let i = 0; i < arrayCart.length; i++) {
-    sum += arrayCart[i].price;
-  }
-  itemsTax += sum * 0.07;
-  allTotal += itemsTax + sum;
-  itemPrice.innerHTML = sum;
-  tax.innerHTML = itemsTax.toFixed(2);
-  finalPrice.innerHTML = allTotal.toFixed(2);
+  let collect = arrayCart.map((item) => {
+    return item.price * item.quantity;
+  });
+  let sum = 0;
+  collect.forEach((num) => {
+    sum += num;
+  });
+  itemPrice.innerHTML = sum.toFixed(2) + "$";
+  tax.innerHTML = (sum * 0.07).toFixed(2) + "$";
+  finalPrice.innerHTML = (sum + sum * 0.07).toFixed(2) + "$";
 }
 
 const search = document.getElementById("search");
@@ -207,7 +208,9 @@ search.addEventListener("input", function (e) {
 
 function setQuantity(id) {
   const select = document.getElementById(`quantity-${id}`);
+  const itemPrice = document.getElementById(`price-${id}`);
   let findItem = arrayCart.find((item) => item.id === id);
   findItem.quantity = parseInt(select.value);
-  console.log(select.value);
+  itemPrice.innerHTML = (findItem.quantity * findItem.price).toFixed(2) + "$";
+  calculate();
 }

@@ -79,12 +79,12 @@ body {
   position: relative;
 }
 .cart-icon label {
-  color: rgb(174, 6, 6);
+  color: rgb(171, 19, 19);
   position: absolute;
-  top: -18px;
-  left: 8px;
+  top: -16px;
+  left: 9px;
   padding: 1px;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: sans-serif;
 }
 @media screen and (max-width: 800px) {
   .header {
@@ -113,8 +113,6 @@ body {
     margin-top: 0px;
   }
 }
-
-
 
 .row {
   margin-top: 100px;
