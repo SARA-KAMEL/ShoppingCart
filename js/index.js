@@ -133,21 +133,22 @@ function createCard(array) {
   cards.innerHTML = arrayCards.join(" ");
 }
 createCard(products);
+let numberItems = document.getElementById("number-items");
+console.log(numberItems.innerHTML)
 
 let arrayCart = [];
 function addToCart(id) {
   let addItem = products.find((item) => item.id === id);
   arrayCart.push({ quantity: 1, ...addItem });
+  numberItems.innerHTML = arrayCart.length 
   buildCart();
-  calculate();
+  // calculate();
 }
 
 const cart = document.getElementById("cart");
-
 function buildCart() {
   let cartItems = arrayCart.map((item) => {
-    console.log(arrayCart);
-    calculate();
+    // calculate();
     return `<div>
   <div>
   <img src="${item.images[0]}" style="width:30%; height: 20%" />
