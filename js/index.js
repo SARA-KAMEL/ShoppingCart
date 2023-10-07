@@ -150,13 +150,13 @@ function buildCart() {
     numberItems.innerHTML = arrayCart.length;
 
     return `<div>
-  <div>
-  <img src="${item.images[0]}" style="width:30%; height: 20%" />
-   </div>
-   <div>
-  <h6>
+  <div class="image-title-postion">
+  <img src="${item.images[0]}" class="cart-image" />
+  <h5 class="item-title-cart">
    ${item.title}
-  </h6>
+  </h5>
+  </div>
+  <div>
   <select id="quantity-${item.id}" class="dropdown" onchange ="setQuantity('${
       item.id
     }')">
