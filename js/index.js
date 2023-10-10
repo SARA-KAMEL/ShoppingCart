@@ -167,7 +167,7 @@ function buildCart() {
   <option  value=5 ${item.quantity === 5 ? "selected" : " "}>5</option>
   </select>
   <button class="btn btn-primary">remove</button>
-  <h6 id="price-${item.id}" style="float: right">${(
+  <h6 id="price-${item.id}" style="float: right; color: rgb(26, 99, 131)">${(
       item.price * item.quantity
     ).toFixed(2)}$</h6>
    </div>

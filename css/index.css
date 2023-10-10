@@ -47,7 +47,7 @@ body {
   align-self: center;
 }
 
-.header-text > h5 {
+.header-text>h5 {
   border-radius: 100%;
 
   box-shadow: 1px 1px 1px 5px rgb(246, 246, 247);
@@ -74,10 +74,12 @@ body {
   border: none;
   border-radius: 5px;
 }
+
 .cart-icon {
   align-self: center;
   position: relative;
 }
+
 .cart-icon label {
   color: rgb(171, 19, 19);
   position: absolute;
@@ -86,6 +88,7 @@ body {
   padding: 1px;
   font-family: sans-serif;
 }
+
 @media screen and (max-width: 800px) {
   .header {
     display: grid;
@@ -97,15 +100,19 @@ body {
     grid-gap: 10px;
     justify-items: center;
   }
+
   .header-text {
     width: 90%;
   }
+
   .search-side label {
     text-align: center;
   }
+
   #search {
     width: 100%;
   }
+
   .cart-icon {
     justify-self: end;
     align-self: start;
@@ -125,6 +132,7 @@ body {
   width: 15rem;
   height: 30rem;
 }
+
 .card-img-top {
   background-color: #edf0f3;
   padding: 5px;
@@ -135,17 +143,23 @@ body {
   .card-text {
     display: block;
   }
+
   box-shadow: 1px 1px 7px teal;
 }
 
 .card-body {
   background-color: hwb(239 42% 15%);
 }
+
 .card-text {
   display: none;
 }
+
 .rightside {
   float: right;
+  background-color: rgb(247 227 191);
+  box-shadow: 0 0 10px rgb(26, 99, 131) ;
+  margin-bottom: 10px;
 }
 
 .cart-header {
@@ -155,40 +169,51 @@ body {
   background-color: rgb(26, 99, 131);
   border-radius: 4px;
 }
-.image-title-postion{
-  position: relative;
-  width:100%;
-  height: 200px;
 
+.image-title-postion {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-top:20px;
 }
-.cart-image{
+
+.cart-image {
   position: absolute;
-  top:0;
-  left:0;
-  width:40%; 
-  height: 80%; 
-  border: 1px solid   rgb(26, 99, 131);
- border-radius: 20%;
-} 
-.item-title-cart{
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 80%;
+  border: 1px solid rgb(26, 99, 131);
+  border-radius: 20%;
+  box-shadow: 0 0 10px rgb(58, 65, 68) ;
+}
+
+.item-title-cart {
   position: absolute;
   top: 10%;
   left: 55%;
-  right:0;
-  /* text-align: right; */
+  right: 0;
   color: rgb(26, 99, 131);
+
 }
-.dropdown{
+
+.dropdown {
   width: 52px;
   height: 36px;
   padding-bottom: 6px;
 }
+
+.total-price {
+  color: rgb(26, 99, 131);
+
+}
+
 .footer {
   color: white;
   background-color: rgb(45, 41, 41);
   padding: 10px;
 }
 
-.footer > span {
+.footer>span {
   margin: 10px;
 }
