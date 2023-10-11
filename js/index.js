@@ -124,7 +124,7 @@ function createCard(array) {
     <p class="card-text">
      ${product.description}
     </p>
-    <a id="add-to-card" href="#" class="btn btn-primary" onclick="addToCart('${product.id}') " >Add to cart</a>
+    <a href="#" class="btn btn-primary" onclick="addToCart('${product.id}')" >Add to cart</a>
   </div>
 </div>
 `;
@@ -133,22 +133,41 @@ function createCard(array) {
   cards.innerHTML = arrayCards.join(" ");
 }
 createCard(products);
+for (let product in products) {
+  products[product].quantity = 1;
+}
+console.log(products);
 
-let numberItems = document.getElementById("number-items");
+
 
 let arrayCart = [];
 function addToCart(id) {
   let addItem = products.find((item) => item.id === id);
-  arrayCart.push({ quantity: 1, ...addItem });
+  let itemExsit = arrayCart.find((item) => item.id === addItem.id);
+  if (itemExsit) {
+    if (itemExsit.quantity < 5) {
+      itemExsit.quantity += 1;
+    } else {
+      return alert("maxmime count of this item is five!");
+    }
+    buildCart();
+    calculate();
+    console.log(itemExsit);
+    return;
+  }
+  arrayCart.push(addItem); 
   buildCart();
   calculate();
+
 }
 
 const cart = document.getElementById("cart");
+let numberItems = document.getElementById("number-items");
+
 function buildCart() {
+
   let cartItems = arrayCart.map((item) => {
     numberItems.innerHTML = arrayCart.length;
-
     return `<div>
   <div class="image-title-postion">
   <img src="${item.images[0]}" class="cart-image" />
@@ -157,9 +176,8 @@ function buildCart() {
   </h5>
   </div>
   <div>
-  <select id="quantity-${item.id}" class="dropdown" onchange ="setQuantity('${
-      item.id
-    }')">
+  <select id="quantity-${item.id}" class="dropdown" onchange ="setQuantity('${item.id
+      }')">
   <option  value=1 ${item.quantity === 1 ? "selected" : " "}>1</option>
   <option  value=2 ${item.quantity === 2 ? "selected" : " "}>2</option>
   <option  value=3 ${item.quantity === 3 ? "selected" : " "}>3</option>
@@ -168,15 +186,15 @@ function buildCart() {
   </select>
   <button class="btn btn-primary">remove</button>
   <h6 id="price-${item.id}" style="float: right; color: rgb(26, 99, 131)">${(
-      item.price * item.quantity
-    ).toFixed(2)}$</h6>
+        item.price * item.quantity
+      ).toFixed(2)}$</h6>
    </div>
 <br> <br>
 </div>`;
   });
 
   cart.innerHTML = cartItems.join(" ");
-  console.log(cart);
+
 }
 
 let itemPrice = document.getElementById("item-price");
