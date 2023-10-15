@@ -121,8 +121,16 @@ body {
   }
 }
 
+.sort{
+   
+  margin-top: 50px;
+   border-top: 1px solid rgba(128, 128, 128, 0.501);
+
+
+}
+
 .row {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .cards {
@@ -154,16 +162,12 @@ body {
 .card-text {
   display: none;
 }
-.add-cart-btn:active{
-  content:"added";
-
-}
 
 .rightside {
   float: right;
   background-color: rgb(247 227 191);
   box-shadow: 0 0 10px rgb(26, 99, 131) ;
-  margin-bottom: 10px;
+  margin-bottom: 10px
 }
 
 .cart-header {
@@ -201,7 +205,7 @@ body {
 
 }
 
-.dropdown {
+.dropdown-cart {
   width: 52px;
   height: 36px;
   padding-bottom: 6px;

@@ -136,9 +136,6 @@ createCard(products);
 for (let product in products) {
   products[product].quantity = 1;
 }
-console.log(products);
-
-
 
 let arrayCart = [];
 function addToCart(id) {
@@ -152,22 +149,34 @@ function addToCart(id) {
     }
     buildCart();
     calculate();
-    console.log(itemExsit);
     return;
+  } else {
+    arrayCart.push(addItem);
   }
-  arrayCart.push(addItem); 
   buildCart();
   calculate();
-
 }
 
+
+function cartIconNumber() {
+  let numberItems = document.getElementById("number-items");
+  numberItems.innerHTML = arrayCart.length;
+}
+
+function removeItem(id) {
+  arrayCart = arrayCart.filter((item) => {
+    return item.id !== id;
+  });
+  cartIconNumber();
+  buildCart();
+  calculate();
+}
+
+
 const cart = document.getElementById("cart");
-let numberItems = document.getElementById("number-items");
-
 function buildCart() {
-
   let cartItems = arrayCart.map((item) => {
-    numberItems.innerHTML = arrayCart.length;
+    cartIconNumber();
     return `<div>
   <div class="image-title-postion">
   <img src="${item.images[0]}" class="cart-image" />
@@ -176,25 +185,27 @@ function buildCart() {
   </h5>
   </div>
   <div>
-  <select id="quantity-${item.id}" class="dropdown" onchange ="setQuantity('${item.id
-      }')">
+  <select id="quantity-${item.id}" class="dropdown-cart" onchange ="setQuantity('${
+      item.id
+    }')">
   <option  value=1 ${item.quantity === 1 ? "selected" : " "}>1</option>
   <option  value=2 ${item.quantity === 2 ? "selected" : " "}>2</option>
   <option  value=3 ${item.quantity === 3 ? "selected" : " "}>3</option>
   <option  value=4 ${item.quantity === 4 ? "selected" : " "}>4</option>
   <option  value=5 ${item.quantity === 5 ? "selected" : " "}>5</option>
   </select>
-  <button class="btn btn-primary">remove</button>
+  <button class="btn btn-primary" onclick ="removeItem('${
+    item.id
+  }')">remove</button>
   <h6 id="price-${item.id}" style="float: right; color: rgb(26, 99, 131)">${(
-        item.price * item.quantity
-      ).toFixed(2)}$</h6>
+      item.price * item.quantity
+    ).toFixed(2)}$</h6>
    </div>
 <br> <br>
 </div>`;
   });
 
   cart.innerHTML = cartItems.join(" ");
-
 }
 
 let itemPrice = document.getElementById("item-price");
