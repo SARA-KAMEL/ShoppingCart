@@ -124,7 +124,7 @@ function createCard(array) {
     <p class="card-text">
      ${product.description}
     </p>
-    <a href="#" class="btn btn-primary" onclick="addToCart('${product.id}')" >Add to cart</a>
+    <a id="add-${product.id}" href="#" class="btn btn-primary changebtn" onclick="addToCart('${product.id}')" >Add to cart</a>
   </div>
 </div>
 `;
@@ -144,19 +144,29 @@ function addToCart(id) {
   if (itemExsit) {
     if (itemExsit.quantity < 5) {
       itemExsit.quantity += 1;
+      changeAddButton(id);
     } else {
       return alert("maxmime count of this item is five!");
     }
     buildCart();
     calculate();
     return;
-  } else {
-    arrayCart.push(addItem);
   }
+
+  arrayCart.push(addItem);
   buildCart();
   calculate();
+  changeAddButton(id);
 }
-
+function changeAddButton(id) {
+  const addButton = document.getElementById(`add-${id}`);
+  addButton.innerHTML = "added";
+  addButton.style.background = " rgba(214, 38, 7, 0.985)";
+  setTimeout(function resetAddbtn() {
+    addButton.innerHTML = "add to cart";
+    addButton.style.background = "#0d6efd";
+  }, 1000);
+}
 
 function cartIconNumber() {
   let numberItems = document.getElementById("number-items");
@@ -172,7 +182,6 @@ function removeItem(id) {
   calculate();
 }
 
-
 const cart = document.getElementById("cart");
 function buildCart() {
   let cartItems = arrayCart.map((item) => {
@@ -185,9 +194,9 @@ function buildCart() {
   </h5>
   </div>
   <div>
-  <select id="quantity-${item.id}" class="dropdown-cart" onchange ="setQuantity('${
-      item.id
-    }')">
+  <select id="quantity-${
+    item.id
+  }" class="dropdown-cart" onchange ="setQuantity('${item.id}')">
   <option  value=1 ${item.quantity === 1 ? "selected" : " "}>1</option>
   <option  value=2 ${item.quantity === 2 ? "selected" : " "}>2</option>
   <option  value=3 ${item.quantity === 3 ? "selected" : " "}>3</option>
