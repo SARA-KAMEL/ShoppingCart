@@ -124,7 +124,7 @@ function createCard(array) {
     <p class="card-text">
      ${product.description}
     </p>
-    <a id="add-${product.id}" href="#" class="btn btn-primary " onclick="addToCart('${product.id}')" >Add to cart</a>
+    <button id="add-${product.id}" class="btn btn-primary " onclick="addToCart('${product.id}')" >Add to cart</button>
   </div>
 </div>
 `;

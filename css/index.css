@@ -138,7 +138,7 @@ body {
 .cards:hover .card-text {
   display: block;
 }
-.cards a{
+.cards button{
   position:absolute;
   bottom: 5%;
   left: 25%;
