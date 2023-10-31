@@ -23,7 +23,7 @@ body {
   z-index: 1;
 }
 
-.header .nav ul {
+.nav ul {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-content: center;
@@ -52,12 +52,10 @@ body {
 }
 
 .header-text h4 {
-  opacity: 100%;
   color: rgb(43 184 243);
   text-align: center;
   font-size: 50px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-
   text-shadow: 1px 1px 10px rgb(253, 253, 255), 0 0 10px rgb(247, 247, 249),
     0 0 10px rgb(248, 249, 246);
 }
@@ -92,10 +90,31 @@ body {
   padding: 1px;
 }
 
-.row {
-  margin-top: 50px;
+/* sort */
+.sort {
+  margin-bottom: 20px;
 }
 
+.sort label {
+  font-weight: bold;
+  color: hsl(239deg 96.44% 30.54%);
+  padding: 5px;
+}
+
+.sort select {
+  border-radius: 5px;
+ color: hsl(248, 68%, 16%);
+  padding: 5px;
+  box-shadow: 0 0 2px gray;
+}
+
+
+
+.row {
+  margin-top: 60px;
+}
+
+/* cards */
 .cards {
   border: 3px solid rgb(18, 18, 15);
   float: left;
@@ -105,27 +124,32 @@ body {
 }
 
 .card-img-top {
-  background-color: #edf0f3;
+  background-color: rgb(237, 240, 243);
   padding: 5px;
   height: 220px;
 }
 
 .cards:hover {
-  .card-text {
-    display: block;
-  }
-
   box-shadow: 1px 1px 7px teal;
 }
-
+.card-text {
+  display: none;
+}
+.cards:hover .card-text {
+  display: block;
+}
+.cards a{
+  position:absolute;
+  bottom: 5%;
+  left: 25%;
+}
 .card-body {
   background-color: hwb(239 42% 15%);
 }
 
-.card-text {
-  display: none;
-}
 
+
+/* cart-side */
 .rightside {
   background-color: rgb(247 227 191);
   box-shadow: 0 0 10px rgb(26, 99, 131);
@@ -145,6 +169,7 @@ body {
   width: 100%;
   height: 200px;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .cart-image {
@@ -177,23 +202,19 @@ body {
 }
 
 .footer {
-  color: white;
+  color: hsl(0, 0%, 100%);
   background-color: rgb(45, 41, 41);
   padding: 10px;
 }
 
-.footer > span {
+.footer>span {
   margin: 10px;
 }
 
 @media screen and (max-width: 800px) {
   .header {
-    display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 50px 30px 30px 60px;
-    color: white;
-    background-color: rgb(43 184 243);
-    border-radius: 5px;
     grid-gap: 10px;
     justify-items: center;
   }
@@ -215,5 +236,28 @@ body {
     align-self: start;
     margin-right: 30px;
     margin-top: 0px;
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+  .cart-image {
+    position: absolute;
+    left: 10%;
+    width: 70%;
+  }
+
+  .item-title-cart {
+    position: absolute;
+    left: 0;
+    top: 80%;
+    padding: 7px;
+
+  }
+
+  .cards {
+    margin: 20px;
+    width: 20rem;
+
   }
 }

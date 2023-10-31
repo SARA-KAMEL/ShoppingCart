@@ -124,7 +124,7 @@ function createCard(array) {
     <p class="card-text">
      ${product.description}
     </p>
-    <a id="add-${product.id}" href="#" class="btn btn-primary changebtn" onclick="addToCart('${product.id}')" >Add to cart</a>
+    <a id="add-${product.id}" href="#" class="btn btn-primary " onclick="addToCart('${product.id}')" >Add to cart</a>
   </div>
 </div>
 `;
@@ -132,6 +132,57 @@ function createCard(array) {
 
   cards.innerHTML = arrayCards.join(" ");
 }
+
+// sort
+
+products.sort(sortByTitle);
+function compareNumbers(a, b) {
+  return a.price - b.price;
+}
+function reverseNumbers(a, b) {
+  return b.price - a.price;
+}
+
+function sortByTitle(a, b) {
+  const nameA = a.title.toUpperCase();
+  const nameB = b.title.toUpperCase();
+
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+}
+
+function reverseByTitle(a, b) {
+  const nameA = a.title.toUpperCase();
+  const nameB = b.title.toUpperCase();
+  if (nameB < nameA) {
+    return -1;
+  }
+  if (nameB > nameA) {
+    return 1;
+  }
+  return 0;
+}
+
+const sort = document.getElementById("sort");
+
+sort.addEventListener("change", () => {
+  if (sort.value === "price-up") {
+    products.sort(compareNumbers);
+  } else if (sort.value === "price-down") {
+    products.sort(reverseNumbers);
+  } else if (sort.value === "name-z-to-a") {
+    products.sort(reverseByTitle);
+  } else {
+    products.sort(sortByTitle);
+  }
+  createCard(products);
+});
+
 createCard(products);
 for (let product in products) {
   products[product].quantity = 1;
@@ -160,11 +211,14 @@ function addToCart(id) {
 }
 function changeAddButton(id) {
   const addButton = document.getElementById(`add-${id}`);
+  addButton.style.background = " rgb(247 227 191)";
+  addButton.style.color= "rgb(26, 99, 131)";
   addButton.innerHTML = "added";
-  addButton.style.background = " rgba(214, 38, 7, 0.985)";
   setTimeout(function resetAddbtn() {
+    addButton.style.background = " hsl(215.75deg 98.36% 52.16%)";
+    addButton.style.color = "hsl(0, 0%, 100%)";
     addButton.innerHTML = "add to cart";
-    addButton.style.background = "#0d6efd";
+
   }, 1000);
 }
 

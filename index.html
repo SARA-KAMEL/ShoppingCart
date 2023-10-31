@@ -1,105 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link href="css/index.css" rel="stylesheet" />
-    <title>Shopping cart</title>
-  </head>
 
-  <body>
-    <div class="container">
-      <header class="header">
-        <nav class="nav">
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Loction</a></li>
-            <li><a href="#">About</a></li>
-          </ul>
-        </nav>
-        <div class="header-text">
-          <h4>Shopping</h4>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="css/index.css" rel="stylesheet"/>
+  <title>Shopping cart</title>
+</head>
 
-        <div class="search-side">
-          <label for="search">Search</label>
-          <input type="search" id="search" />
-        </div>
-        <div class="cart-icon">
-          <h6 id="number-items"></h6>
-          <i class="fa-solid fa-cart-shopping" style="color:rgb(27, 80, 103);"></i>
-        </div>
-      </header>
+<body>
+  <div class="container">
+    <header class="header">
+      <nav class="nav">
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="#">Loction</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </nav>
+      <div class="header-text">
+        <h4>Shopping</h4>
+      </div>
 
-      <main>
+      <div class="search-side">
+        <label for="search">Search</label>
+        <input type="search" id="search" />
+      </div>
+      <div class="cart-icon">
+        <h6 id="number-items"></h6>
+        <i class="fa-solid fa-cart-shopping" style="color:rgb(27, 80, 103);"></i>
+      </div>
+    </header>
     
-        <div class="row">
-          <div id="cards" class="col-12 col-lg-8 col-md-6 col-sm-6"></div>
+    <main>  
+      <div class="row">
+        <section class="sort">
+          <article>
+          <label for="sort">products sort by:</label>
+          <select name="sort" id="sort">
+            <option value="name-a-to-z">name: A to Z</option>
+            <option value="name-z-to-a">name: Z to A</option>
+            <option value="price-up">price: Low to High</option>
+            <option value="price-down" >price: High to Low</option>
+          </select>
+        </article>
+        </section>
+        <div id="cards" class="col-12 col-lg-8 col-md-6 col-sm-6">
 
-          <div class="col-12 col-lg-4 col-md-6 col-sm-6 rightside">
+        </div>
+
+        <div class="col-12 col-lg-4 col-md-6 col-sm-6 rightside">
+          <div>
+            <h2 class="cart-header">Your Cart</h2>
+          </div>
+          <div id="cart"></div>
+
+          <div id="total">
             <div>
-              <h2 class="cart-header">Your Cart</h2>
+              <h5>
+                Items total:
+                <span id="item-price" class="total-price" style="float: right"></span>
+              </h5>
             </div>
-            <div id="cart"></div>
-
-            <div id="total">
-              <div>
-                <h5>
-                  Items total:
-                  <span
-                    id="item-price"
-                    class="total-price"
-                    style="float: right"
-                  ></span>
-                </h5>
-              </div>
-              <div>
-                <h5>
-                  tax:
-                  <span id="tax" class="total-price" style="float: right">
-                  </span>
-                </h5>
-              </div>
-              <hr />
-              <div>
-                <h5>
-                  total:
-                  <span
-                    id="final-price"
-                    class="total-price"
-                    style="float: right"
-                  ></span>
-                </h5>
-              </div>
+            <div>
+              <h5>
+                tax:
+                <span id="tax" class="total-price" style="float: right">
+                </span>
+              </h5>
+            </div>
+            <hr />
+            <div>
+              <h5>
+                total:
+                <span id="final-price" class="total-price" style="float: right"></span>
+              </h5>
             </div>
           </div>
         </div>
-      </main>
+      </div>
+    </main>
 
-      <footer class="footer">
-        <span> Terms</span>
-        <span> CA Supply Chain</span>
-        <span> Privacy</span>
-        <span> CA Privacy Rights</span>
-        <span> Your Privacy Choices</span>
-        <span> Interest Based Ads</span>
-        <span> TM & © 2023 Brands, Inc.</span>
-      </footer>
-    </div>
+    <footer class="footer">
+      <span> Terms</span>
+      <span> CA Supply Chain</span>
+      <span> Privacy</span>
+      <span> CA Privacy Rights</span>
+      <span> Your Privacy Choices</span>
+      <span> Interest Based Ads</span>
+      <span> TM & © 2023 Brands, Inc.</span>
+    </footer>
+  </div>
 
-    <script src="./js/index.js"></script>
-  </body>
+  <script src="./js/index.js"></script>
+</body>
+
 </html>
