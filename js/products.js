@@ -101,3 +101,4 @@
     }
   ];
 
+window.products = products;
