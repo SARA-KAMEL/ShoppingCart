@@ -1,3 +1,4 @@
+let products = window.productsData;
 let arrayCards = [];
 function createCard(array) {
   const cards = document.getElementById("cards");
