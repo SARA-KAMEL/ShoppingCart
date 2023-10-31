@@ -1,8 +1,13 @@
 let products = window.productsData;
-let arrayCards = [];
+let cardsList = [];
+
+createCard(products);
+for (let product in products) {
+  products[product].quantity = 1;
+}
 function createCard(array) {
   const cards = document.getElementById("cards");
-  arrayCards = array.map((product) => {
+  cardsList = array.map((product) => {
     return `<div
   class="card cards text-white bg-info col-sm-6"
   style="; "
@@ -24,7 +29,7 @@ function createCard(array) {
 `;
   });
 
-  cards.innerHTML = arrayCards.join(" ");
+  cards.innerHTML = cardsList.join(" ");
 }
 
 // sort
@@ -77,15 +82,10 @@ sort.addEventListener("change", () => {
   createCard(products);
 });
 
-createCard(products);
-for (let product in products) {
-  products[product].quantity = 1;
-}
-
-let arrayCart = [];
+let cartItems = [];
 function addToCart(id) {
   let addItem = products.find((item) => item.id === id);
-  let itemExsit = arrayCart.find((item) => item.id === addItem.id);
+  let itemExsit = cartItems.find((item) => item.id === addItem.id);
   if (itemExsit) {
     if (itemExsit.quantity < 5) {
       itemExsit.quantity += 1;
@@ -98,7 +98,7 @@ function addToCart(id) {
     return;
   }
 
-  arrayCart.push(addItem);
+  cartItems.push(addItem);
   buildCart();
   calculate();
   changeAddButton(id);
@@ -106,23 +106,22 @@ function addToCart(id) {
 function changeAddButton(id) {
   const addButton = document.getElementById(`add-${id}`);
   addButton.style.background = " rgb(247 227 191)";
-  addButton.style.color= "rgb(26, 99, 131)";
+  addButton.style.color = "rgb(26, 99, 131)";
   addButton.innerHTML = "added";
-  setTimeout(function resetAddbtn() {
+  setTimeout(function resetAddBtn() {
     addButton.style.background = " hsl(215.75deg 98.36% 52.16%)";
     addButton.style.color = "hsl(0, 0%, 100%)";
     addButton.innerHTML = "add to cart";
-
   }, 1000);
 }
 
 function cartIconNumber() {
   let numberItems = document.getElementById("number-items");
-  numberItems.innerHTML = arrayCart.length;
+  numberItems.innerHTML = cartItems.length;
 }
 
 function removeItem(id) {
-  arrayCart = arrayCart.filter((item) => {
+  cartItems = cartItems.filter((item) => {
     return item.id !== id;
   });
   cartIconNumber();
@@ -132,7 +131,7 @@ function removeItem(id) {
 
 const cart = document.getElementById("cart");
 function buildCart() {
-  let cartItems = arrayCart.map((item) => {
+  let cartHtml = cartItems.map((item) => {
     cartIconNumber();
     return `<div>
   <div class="image-title-postion">
@@ -162,7 +161,7 @@ function buildCart() {
 </div>`;
   });
 
-  cart.innerHTML = cartItems.join(" ");
+  cart.innerHTML = cartHtml.join(" ");
 }
 
 let itemPrice = document.getElementById("item-price");
@@ -170,7 +169,7 @@ let tax = document.getElementById("tax");
 let finalPrice = document.getElementById("final-price");
 
 function calculate() {
-  let collect = arrayCart.map((item) => {
+  let collect = cartItems.map((item) => {
     return item.price * item.quantity;
   });
   let sum = 0;
@@ -195,7 +194,7 @@ search.addEventListener("input", function (e) {
 function setQuantity(id) {
   const select = document.getElementById(`quantity-${id}`);
   const itemPrice = document.getElementById(`price-${id}`);
-  let findItem = arrayCart.find((item) => item.id === id);
+  let findItem = cartItems.find((item) => item.id === id);
   findItem.quantity = parseInt(select.value);
   itemPrice.innerHTML = (findItem.quantity * findItem.price).toFixed(2) + "$";
   calculate();
